@@ -7,48 +7,79 @@ import time
 app = Flask(__name__)
 app.secret_key = "wjddusdlek@!!@wjddusdlek!!"
 
-
 DB = DBModule()
-
-@app.route('/')
-def index():
-    if "uid" in session:
-        user = session["uid"]
-    else:
-        user = "Login"
-    return render_template('index.html', user=user)
-
 
 ## 승일
 def solution2(img_src):
     return 'True', 0.74
 
 
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
-@app.route('/upload', methods = ['POST'])
+@app.route("/")
+def index(): 
+    if "uid" in session:
+        user = session["uid"]
+    else:
+        user = "Login"   
+    return render_template("index.html", user = user)
+
+
+@app.route('/upload')
 def upload():
+    if "uid" in session:
+        return render_template("upload.html")
+    else:
+        return redirect(url_for("login"))
+
+
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+@app.route("/upload_done", methods=["POST"])
+def upload_done():
     file = request.files['file']
-    filename = file.filename
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    uid = session.get("uid")
+    print(file.name, uid)
+    filename = uid + "_" + file.filename
+        
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # 로컬 저장
     
     path_local = url_for('static', filename = 'uploads/' + filename)
-    path_on_cloud = "images/" + filename
-    DB.storage.child(path_on_cloud).put("./" + path_local)
-    
+        
     start_time = time.time()
     label, prob = solution2(path_local)
     end_time = time.time()
     app.logger.info(end_time-start_time)
-    return render_template('index.html', filename=path_local, label=label, probability=prob)
+    
+    DB.upload(uid, filename, path_local, label, prob)
+    # DB.storage.child(path_on_cloud).put("./" + path_local)
+        
+    return render_template('upload.html', filename=path_local, label=label, probability=prob)
+    
 
-
+        
 @app.route("/list")
 def upload_list():
     pass
 
 
-@app.route("/logout")
-def logout():
+@app.route("/post_list")
+def post_list(): 
+    post_list = DB.post_list()
+
+    if post_list == None:
+        length = 0
+    else:
+        length = len(post_list)
+    return render_template("post_list.html", post_list = post_list.items(), length = length)
+
+
+@app.route("/post/<string:pid>") 
+def post(pid): 
+    post = DB.post_detail(pid)
+    print(post)
+    return render_template("post_detail.html", post = post)
+
+
+@app.route("/logout") 
+def logout(): 
     if "uid" in session:
         session.pop("uid")
         return redirect(url_for("index"))
@@ -56,22 +87,27 @@ def logout():
         return redirect(url_for("login"))
 
 
-@app.route("/login")
-def login():
+@app.route("/login") 
+def login(): 
     if "uid" in session:
         return redirect(url_for("index"))
     return render_template("login.html")
 
 
-@app.route("/login_done", methods=["get"])
-def login_done():
-    uid = request.args.get("id")
+@app.route("/login_done", methods = {"GET"}) 
+def login_done(): 
+    if "uid" in session:
+        return redirect(url_for("index"))
+    uid = request.args.get("uid")
     pwd = request.args.get("pwd")
-    if DB.login(uid, pwd):
-        session["id"] = uid
+    print(uid, pwd)
+
+    if DB.login(uid, pwd): 
+        session["uid"] = uid
+        flash("인증되었습니다.")
         return redirect(url_for("index"))
     else:
-        flash("INVALID ID OR PASSWORD")
+        flash("아이디가 없거나 비밀번호가 틀립니다.")
         return redirect(url_for("login"))
 
 
@@ -91,6 +127,7 @@ def signin_done():
     else:
         flash("INVALID ID")
         return redirect(url_for("signin"))
+
 
 @app.route("/user/<uid>")
 def user(uid):
