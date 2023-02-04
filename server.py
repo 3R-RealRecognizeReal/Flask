@@ -36,46 +36,43 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 def upload_done():
     file = request.files['file']
     uid = session.get("uid")
-    print(file.name, uid)
+    
     filename = uid + "_" + file.filename
         
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # 로컬 저장
     
     path_local = url_for('static', filename = 'uploads/' + filename)
-        
+    
     start_time = time.time()
     label, prob = solution2(path_local)
     end_time = time.time()
     app.logger.info(end_time-start_time)
     
-    DB.upload(uid, filename, path_local, label, prob)
-    # DB.storage.child(path_on_cloud).put("./" + path_local)
+    DB.upload(uid, file.filename, path_local, label, prob)
         
     return render_template('upload.html', filename=path_local, label=label, probability=prob)
-    
 
-        
-@app.route("/list")
+
+@app.route("/upload_list")
 def upload_list():
-    pass
-
-
-@app.route("/post_list")
-def post_list(): 
-    post_list = DB.post_list()
-
-    if post_list == None:
-        length = 0
+    if "uid" in session:
+        uid = session.get("uid")
+        upload_list = DB.upload_list(uid)
+        
+        if upload_list == None:
+            length = 0
+        else:
+            length = len(upload_list)
+        
+        return render_template("upload_list.html", upload_list = upload_list.items(), length = length)
     else:
-        length = len(post_list)
-    return render_template("post_list.html", post_list = post_list.items(), length = length)
+        return redirect(url_for("login"))
 
 
-@app.route("/post/<string:pid>") 
-def post(pid): 
-    post = DB.post_detail(pid)
-    print(post)
-    return render_template("post_detail.html", post = post)
+@app.route("/user/<string:pid>")
+def user_upload(pid):
+    list = DB.upload_list(pid)
+    return render_template("upload_detail.html", list=list)
 
 
 @app.route("/logout") 
