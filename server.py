@@ -63,16 +63,16 @@ def upload_list():
             length = 0
         else:
             length = len(upload_list)
-        
-        return render_template("upload_list.html", upload_list = upload_list.items(), length = length)
+        print(length)
+        return render_template("upload_list.html", upload_list=upload_list.items(), length=length)
     else:
         return redirect(url_for("login"))
 
 
-@app.route("/user/<string:pid>")
-def user_upload(pid):
-    list = DB.upload_list(pid)
-    return render_template("upload_detail.html", list=list)
+@app.route("/post/<string:pid>")
+def post(pid):
+    post = DB.upload_list(pid)
+    return render_template("upload_detail.html", post=post)
 
 
 @app.route("/logout") 
