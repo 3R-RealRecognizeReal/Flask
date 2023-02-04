@@ -5,7 +5,7 @@
 
 {% block contents %}
 <div>
-    <img src="{{ url_for('static', filename=filename) }}">
+    <img src="{{'../'+filename}}">
 </div>
 <p>path: {{post.label}}</p>
 <p>label : {{post.probability}}</p>

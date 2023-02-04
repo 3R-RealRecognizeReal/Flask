@@ -49,21 +49,40 @@ class DBModule():
             return False
     
     
+    def check_upload(self, uid, filename):
+        upload_lists = self.db.child("uploads").child(uid).get().val()
+        if upload_lists == None:
+            return True
+        else:
+            newfile = filename.split('/')[-1].split('.')[0]
+            # 파일명 중복
+            for file in upload_lists:
+                if file == newfile:
+                    return False
+            # 한 id당 10회
+            if len(upload_lists) > 10:
+                return False
+            return True
+    
+    
     def upload(self, uid, filename, path_local, label, prob):
         path_on_cloud = "images/" + uid + '/' + filename
-        pid = str(uuid.uuid4())[:10]
-        print(pid)
-        information = {
-            "path_on_cloud": path_on_cloud,
-            "label": label,
-            "probability": prob
-        }
-        self.db.child("uploads").child(uid).child(pid).set(information)
-        self.storage.child(path_on_cloud).put("./" + path_local)
+        if self.check_upload(uid, path_on_cloud):
+            information = {
+                "path_on_cloud": path_on_cloud,
+                "label": label,
+                "probability": prob
+            }
+            self.db.child("uploads").child(uid).child(filename.split('.')[0]).set(information)
+            self.storage.child(path_on_cloud).put("./" + path_local)
+            return True
+        else:
+            False
     
     
     def upload_list(self, uid):
         upload_lists = self.db.child("uploads").child(uid).get().val()
+        print(upload_lists)
         return upload_lists
     
     
@@ -71,8 +90,7 @@ class DBModule():
         post = self.db.child("uploads").child(uid).get().val()[pid]
         path_local = 'static/downloads/' + post['path_on_cloud'].split('/', maxsplit=1).pop().replace('/', '_')
         self.storage.child(post['path_on_cloud']).download("", path_local)
-        print(path_local)
-        return post, './' + path_local
+        return post, path_local
     
     
     def get_user(self, uid):

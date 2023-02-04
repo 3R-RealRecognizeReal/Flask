@@ -48,9 +48,12 @@ def upload_done():
     end_time = time.time()
     app.logger.info(end_time-start_time)
     
-    DB.upload(uid, file.filename, path_local, label, prob)
-        
-    return render_template('upload.html', filename=path_local, label=label, probability=prob)
+    if DB.upload(uid, file.filename, path_local, label, prob):
+        return render_template('upload.html', filename=path_local, label=label, probability=prob)
+    
+    else:
+        flash("INVALID")
+        return render_template('upload.html', filename=None, label=None, probability=None)
 
 
 @app.route("/upload_list")
@@ -61,19 +64,20 @@ def upload_list():
         
         if upload_list == None:
             length = 0
+            items = None
         else:
             length = len(upload_list)
-        return render_template("upload_list.html", upload_list=upload_list.items(), length=length)
+            items = upload_list.items()
+        return render_template("upload_list.html", upload_list=items, length=length)
     else:
         return redirect(url_for("login"))
 
 
-@app.route("/post/<string:pid>")
-def post(pid):
+@app.route("/post/<string:fid>")
+def post(fid):
     if "uid" in session:
         uid = session.get("uid")
-        post, path_local = DB.upload_detail(uid, pid)
-        print(path_local)
+        post, path_local = DB.upload_detail(uid, fid)
         return render_template("upload_detail.html", post=post, filename=path_local)
     else:
         return redirect(url_for("login"))
@@ -105,10 +109,10 @@ def login_done():
 
     if DB.login(uid, pwd): 
         session["uid"] = uid
-        flash("인증되었습니다.")
+        flash("SUCCESS")
         return redirect(url_for("index"))
     else:
-        flash("아이디가 없거나 비밀번호가 틀립니다.")
+        flash("INVALID")
         return redirect(url_for("login"))
 
 
@@ -123,10 +127,10 @@ def signin_done():
     uid = request.args.get("id")
     pwd = request.args.get("pwd")
     name = request.args.get("name")
-    if DB.singin(_id_=uid, pwd=pwd, name=name, email=email):
+    if DB.signin(_id_=uid, pwd=pwd, name=name, email=email):
         return redirect(url_for("index"))
     else:
-        flash("INVALID ID")
+        flash("INVALID")
         return redirect(url_for("signin"))
 
 

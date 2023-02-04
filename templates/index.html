@@ -3,6 +3,7 @@
 {% block user %}
 
 {% if user=="Login" %}
+<a href="{{url_for('signin')}}">Signin</a>
 <a href="{{url_for('login')}}">Login</a>
 {% else %}
 <p>user: {{user}}</p>

@@ -9,7 +9,7 @@
 
 {% else %}
     {% for post in upload_list %}
-    <a href="{{url_for('post', pid=post[0])}}">
+    <a href="{{url_for('post', fid=post[0])}}">
         <div>
             <p>file name: {{post[1].path_on_cloud}}</p>
         </div>
