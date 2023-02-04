@@ -64,13 +64,15 @@ class DBModule():
     
     def upload_list(self, uid):
         upload_lists = self.db.child("uploads").child(uid).get().val()
-        print(upload_lists)
         return upload_lists
     
     
-    def upload_detail(self, pid):
-        post = self.db.child("uploads").get().val()[pid]
-        return post
+    def upload_detail(self, uid, pid):
+        post = self.db.child("uploads").child(uid).get().val()[pid]
+        path_local = 'static/downloads/' + post['path_on_cloud'].split('/', maxsplit=1).pop().replace('/', '_')
+        self.storage.child(post['path_on_cloud']).download("", path_local)
+        print(path_local)
+        return post, './' + path_local
     
     
     def get_user(self, uid):

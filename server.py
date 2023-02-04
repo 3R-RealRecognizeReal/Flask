@@ -63,7 +63,6 @@ def upload_list():
             length = 0
         else:
             length = len(upload_list)
-        print(length)
         return render_template("upload_list.html", upload_list=upload_list.items(), length=length)
     else:
         return redirect(url_for("login"))
@@ -71,8 +70,13 @@ def upload_list():
 
 @app.route("/post/<string:pid>")
 def post(pid):
-    post = DB.upload_list(pid)
-    return render_template("upload_detail.html", post=post)
+    if "uid" in session:
+        uid = session.get("uid")
+        post, path_local = DB.upload_detail(uid, pid)
+        print(path_local)
+        return render_template("upload_detail.html", post=post, filename=path_local)
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/logout") 

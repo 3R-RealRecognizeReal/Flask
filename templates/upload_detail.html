@@ -4,7 +4,9 @@
 {% endblock user %}
 
 {% block contents %}
-<p>path: {{post.path_on_cloud}}</p>
-<p>label : {{post.label}}</p>
-<p>probability : {{post.probability}}</p>
+<div>
+    <img src="{{ url_for('static', filename=filename) }}">
+</div>
+<p>path: {{post.label}}</p>
+<p>label : {{post.probability}}</p>
 {% endblock contents %}
