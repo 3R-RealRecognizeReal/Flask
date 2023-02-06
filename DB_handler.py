@@ -1,6 +1,5 @@
 import pyrebase
 import json
-import uuid
 
 class DBModule():
     def __init__(self):

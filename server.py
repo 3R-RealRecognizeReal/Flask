@@ -1,4 +1,5 @@
 from DB_handler import DBModule
+from model import Model
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 import os
 import time
@@ -8,10 +9,11 @@ app = Flask(__name__)
 app.secret_key = "wjddusdlek@!!@wjddusdlek!!"
 
 DB = DBModule()
+M = Model()
 
 ## 승일
 def solution2(img_src):
-    return 'True', 0.74
+    return M.test_model(img_src)
 
 
 @app.route("/")
@@ -44,7 +46,7 @@ def upload_done():
     path_local = url_for('static', filename = 'uploads/' + filename)
     
     start_time = time.time()
-    label, prob = solution2(path_local)
+    label, prob = solution2('./' + path_local)
     end_time = time.time()
     app.logger.info(end_time-start_time)
     
