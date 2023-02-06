@@ -7,9 +7,6 @@ import numpy as np
 import pandas as pd
 from torch import nn
 from torchvision import transforms, models
-from torch.utils.data import Dataset, DataLoader
-import matplotlib.pyplot as plt
-from ipywidgets import interact
 import warnings
 warnings.filterwarnings('ignore')
 
