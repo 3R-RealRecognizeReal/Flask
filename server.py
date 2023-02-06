@@ -11,7 +11,7 @@ app.secret_key = "wjddusdlek@!!@wjddusdlek!!"
 DB = DBModule()
 M = Model()
 
-## 승일
+
 def solution2(img_src):
     return M.test_model(img_src)
 
@@ -46,12 +46,12 @@ def upload_done():
     path_local = url_for('static', filename = 'uploads/' + filename)
     
     start_time = time.time()
-    label, prob = solution2('./' + path_local)
+    label, prob, labels = solution2('./' + path_local)
     end_time = time.time()
     app.logger.info(end_time-start_time)
     
     if DB.upload(uid, file.filename, path_local, label, prob):
-        return render_template('upload.html', filename=path_local, label=label, probability=prob)
+        return render_template('upload.html', filename=path_local, label=label, probability=prob, labels=labels)
     
     else:
         flash("INVALID")
