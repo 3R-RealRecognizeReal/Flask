@@ -7,6 +7,9 @@
 {% if messages %}
 	<p>{{messages[0]}}</p>
 {% endif %}
+{% if labels %}
+<p>{{labels}}</p>
+{% endif %}
 {% endwith %}
 {% endblock message %}
 
@@ -15,12 +18,15 @@
     <div class="container">
         <input type="file" name="file">
         <input type="submit" value="submit">
+        
         {% if filename %}
             <div>
             <img src="{{filename}}">
             </div>
             <div>
-                <p>{{label}} {{probability}} {{labels}}</p>
+                {% if label, probability %}
+                <p>{{label}} {{probability}}</p>
+                {% endif %}
             </div>
         {% endif %}
     </div>

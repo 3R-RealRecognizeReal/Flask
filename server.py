@@ -12,8 +12,10 @@ DB = DBModule()
 M = Model()
 
 
-def solution2(img_src):
-    return M.test_model(img_src)
+def model_prediction(img_src):
+    M.test_model(img_src)
+    print(M.labels)
+    return M.labels, M.label, M.prob
 
 
 @app.route("/")
@@ -46,16 +48,25 @@ def upload_done():
     path_local = url_for('static', filename = 'uploads/' + filename)
     
     start_time = time.time()
-    label, prob, labels = solution2('./' + path_local)
+    model_prediction('./' + path_local)
     end_time = time.time()
     app.logger.info(end_time-start_time)
     
-    if DB.upload(uid, file.filename, path_local, label, prob):
-        return render_template('upload.html', filename=path_local, label=label, probability=prob, labels=labels)
+    print(M.labels)
+    print(M.label)
+    print(M.prob)
+    
+    if DB.upload(uid, file.filename, path_local, M.labels, M.label, M.prob):
+        return render_template('upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
     
     else:
-        flash("INVALID")
-        return render_template('upload.html', filename=None, label=None, probability=None)
+        if M.labels != None:
+            flash("label 여러개")
+            return render_template('upload.html', filename=None, labels=M.labels, label=None, probability=None)
+        else:
+            flash("이미 있는 파일 혹은 10개 이상")
+            return render_template('upload.html', filename=None, labels=None, label=None, probability=None)
+        
 
 
 @app.route("/upload_list")

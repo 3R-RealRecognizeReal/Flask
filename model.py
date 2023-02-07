@@ -6,6 +6,7 @@ import torch
 import numpy as np
 from PIL import Image
 import pandas as pd
+import collections
 import torch
 from torch import nn
 from torchvision import transforms, models
@@ -99,36 +100,17 @@ class Model():
     
     
     def test_model(self, image_dir):
+        self.labels = None
+        self.label = None
+        self.prob = None
+        
         self.set_image(image_dir)
-        label, prob = self.test_model_RF()
-        labels = self.test_model_Obj(image_dir)
-        return label, prob, labels
         
-
-    def test_model_RF(self):
-        tensor_image = self.preprocess_image(self.img_RF)
-
-        with torch.no_grad():
-            prediction = self.model_RF(tensor_image)
-
-        _, pred_label = torch.max(prediction.detach(), dim=1)
-
-        pred_label = pred_label.squeeze(0)
-
-        # 이미지가 real일 확률
-        prob_list = prediction.tolist()
-        prob_reduce_list = np.array(prob_list).flatten().tolist()
-    
-        label = None
-        if pred_label.item() == 0:
-            label = 'REAL'
-        if pred_label.item() == 1:
-            label = 'FAKE'
-    
-        prob = format(prob_reduce_list[0] * 100, '.3f')
-        
-        print(label, prob)
-        return label, prob
+        self.labels = self.test_model_Obj(image_dir)
+        if len(self.labels) == 1 and self.labels.get("person") == 1:
+            self.label, self.prob = self.test_model_RF()
+            self.labels = None
+            
     
     def test_model_Obj(self, dir_path):
         self.img_Obj, _, _, _ = self.transformer(self.img_Obj, None, torch.zeros(1,4), torch.zeros(1))
@@ -173,5 +155,31 @@ class Model():
             
                     labels.append(category)
     
-            print(labels)
+            labels = collections.Counter(labels)
+            
             return labels
+    
+
+    def test_model_RF(self):
+        tensor_image = self.preprocess_image(self.img_RF)
+
+        with torch.no_grad():
+            prediction = self.model_RF(tensor_image)
+
+        _, pred_label = torch.max(prediction.detach(), dim=1)
+
+        pred_label = pred_label.squeeze(0)
+
+        # 이미지가 real일 확률
+        prob_list = prediction.tolist()
+        prob_reduce_list = np.array(prob_list).flatten().tolist()
+    
+        label = None
+        if pred_label.item() == 0:
+            label = 'REAL'
+        if pred_label.item() == 1:
+            label = 'FAKE'
+    
+        prob = format(prob_reduce_list[0] * 100, '.3f')
+        
+        return label, prob

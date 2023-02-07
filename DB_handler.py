@@ -48,11 +48,14 @@ class DBModule():
             return False
     
     
-    def check_upload(self, uid, filename):
+    def check_upload(self, uid, filename, label, prob):
         upload_lists = self.db.child("uploads").child(uid).get().val()
+        
         if upload_lists == None:
             return True
         else:
+            if label == None:  # label 여려개
+                return False
             newfile = filename.split('/')[-1].split('.')[0]
             # 파일명 중복
             for file in upload_lists:
@@ -64,9 +67,9 @@ class DBModule():
             return True
     
     
-    def upload(self, uid, filename, path_local, label, prob):
+    def upload(self, uid, filename, path_local, labels, label, prob):
         path_on_cloud = "images/" + uid + '/' + filename
-        if self.check_upload(uid, path_on_cloud):
+        if self.check_upload(uid, path_on_cloud, label, prob):
             information = {
                 "path_on_cloud": path_on_cloud,
                 "label": label,
