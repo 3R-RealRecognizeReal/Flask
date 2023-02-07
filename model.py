@@ -180,6 +180,6 @@ class Model():
         if pred_label.item() == 1:
             label = 'FAKE'
     
-        prob = format(prob_reduce_list[0] * 100, '.3f')
+        prob = format(prob_reduce_list[0] * 100, '.1f')
         
         return label, prob

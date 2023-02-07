@@ -3,7 +3,8 @@ from model import Model
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 import os
 import time
-
+from PIL import Image, ImageOps
+import cv2
 
 app = Flask(__name__)
 app.secret_key = "wjddusdlek@!!@wjddusdlek!!"
@@ -40,8 +41,12 @@ def upload_done():
     file = request.files['file']
     uid = session.get("uid")
     
+    name = file.filename
     filename = uid + "_" + file.filename
-        
+    
+    file = Image.open(file)
+    file.thumbnail((400, 400))
+    
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # 로컬 저장
     
     path_local = url_for('static', filename = 'uploads/' + filename)
@@ -55,16 +60,16 @@ def upload_done():
     print(M.label)
     print(M.prob)
     
-    if DB.upload(uid, file.filename, path_local, M.labels, M.label, M.prob):
+    if M.labels != None:
+        flash("label 여러개")
+        return render_template('upload.html', filename=None, labels=M.labels, label=None, probability=None)
+        
+    elif DB.upload(uid, name, path_local, M.labels, M.label, M.prob):
         return render_template('upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
     
     else:
-        if M.labels != None:
-            flash("label 여러개")
-            return render_template('upload.html', filename=None, labels=M.labels, label=None, probability=None)
-        else:
-            flash("이미 있는 파일 혹은 10개 이상")
-            return render_template('upload.html', filename=None, labels=None, label=None, probability=None)
+        flash("이미 있는 파일 혹은 10개 이상")
+        return render_template('upload.html', filename=None, labels=None, label=None, probability=None)
         
 
 
