@@ -24,13 +24,13 @@ def index():
         user = session["uid"]
     else:
         user = "Login"   
-    return render_template("index.html", user = user)
+    return render_template("new_index.html", user = user)
 
 
 @app.route('/upload')
 def upload():
     if "uid" in session:
-        return render_template("upload.html")
+        return render_template("new_upload.html")
     else:
         return redirect(url_for("login"))
 
@@ -57,15 +57,15 @@ def upload_done():
     print(M.prob)
     
     if DB.upload(uid, file.filename, path_local, M.labels, M.label, M.prob):
-        return render_template('upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
+        return render_template('new_upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
     
     else:
         if M.labels != None:
             flash("label 여러개")
-            return render_template('upload.html', filename=None, labels=M.labels, label=None, probability=None)
+            return render_template('new_upload.html', filename=None, labels=M.labels, label=None, probability=None)
         else:
             flash("이미 있는 파일 혹은 10개 이상")
-            return render_template('upload.html', filename=None, labels=None, label=None, probability=None)
+            return render_template('new_upload.html', filename=None, labels=None, label=None, probability=None)
         
 
 
@@ -81,7 +81,7 @@ def upload_list():
         else:
             length = len(upload_list)
             items = upload_list.items()
-        return render_template("upload_list.html", upload_list=items, length=length)
+        return render_template("new_upload_list.html", upload_list=items, length=length)
     else:
         return redirect(url_for("login"))
 
@@ -91,7 +91,7 @@ def post(fid):
     if "uid" in session:
         uid = session.get("uid")
         post, path_local = DB.upload_detail(uid, fid)
-        return render_template("upload_detail.html", post=post, filename=path_local)
+        return render_template("new_upload_detail.html", post=post, filename=path_local)
     else:
         return redirect(url_for("login"))
 
@@ -109,7 +109,7 @@ def logout():
 def login(): 
     if "uid" in session:
         return redirect(url_for("index"))
-    return render_template("login.html")
+    return render_template("new_login.html")
 
 
 @app.route("/login_done", methods = {"GET"}) 
@@ -131,7 +131,7 @@ def login_done():
 
 @app.route("/signin")
 def signin():
-    return render_template('signin.html')
+    return render_template('new_signin.html')
 
 
 @app.route("/signin_done", methods=["get"])
