@@ -30,7 +30,7 @@ def index():
 @app.route('/upload')
 def upload():
     if "uid" in session:
-        return render_template("upload.html")
+        return render_template("demo.html")
     else:
         return redirect(url_for("login"))
 
@@ -62,14 +62,14 @@ def upload_done():
     
     if M.labels != None:
         flash("label 여러개")
-        return render_template('upload.html', filename=None, labels=M.labels, label=None, probability=None)
+        return render_template('demo.html', filename=None, labels=M.labels, label=None, probability=None)
         
     elif DB.upload(uid, name, path_local, M.labels, M.label, M.prob):
-        return render_template('upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
+        return render_template('demo.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
     
     else:
         flash("이미 있는 파일 혹은 10개 이상")
-        return render_template('upload.html', filename=None, labels=None, label=None, probability=None)
+        return render_template('demo.html', filename=None, labels=None, label=None, probability=None)
         
 
 
@@ -113,7 +113,7 @@ def logout():
 def login(): 
     if "uid" in session:
         return redirect(url_for("index"))
-    return render_template("login.html")
+    return render_template("login/index.html")
 
 
 @app.route("/login_done", methods = {"GET"}) 
