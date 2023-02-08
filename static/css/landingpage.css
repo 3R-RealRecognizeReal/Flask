@@ -4,7 +4,7 @@ html {
 }
 * {
 	margin: 0;
-	padding: 0;
+	padding: 0vh;
 }
 ul, li {
 	list-style: none;
@@ -13,9 +13,14 @@ input {
 	border: none;
 }
 body {
-  width: 172.8rem;
-}.ladingpage-sJQ {
-  width: 100%;
+  width: 100vw;
+  -ms-overflow-style:none;
+          /*172.8rem;*/
+}
+body::-webkit-scrollbar { display:none; }
+
+.ladingpage-sJQ {
+  width: 100vw;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -24,42 +29,51 @@ body {
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te {
   margin-right: 3.5rem;
-  width: calc(100% - 3.5rem);
+  width: 100vw;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-shrink: 0;
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-cdyz-AKS {
+  /*Logo*/
   margin-bottom: 0.7rem;
   box-sizing: border-box;
   padding: 28.9rem 0;
   width: 14rem;
   height: 760.5rem;
-  font-size: 14rem;
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -2.8rem;
-  color: #000000;
-  font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
-  background-color: rgba(217, 217, 217, 0.1000000015);
+  background-color: white;
   flex-shrink: 0;
+  position: fixed;
 }
+/*ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-cdyz-AKS.Logo{*/
+
+/*}*/
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ {
-  width: 155.3rem;
+  width: 100vw;
   align-items: center;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .banner-UDe {
-  width: 100%;
+  width: 100vw;
+  padding-left: 20rem;
   overflow: hidden;
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  z-index: 4;
+  height: 8vh;
 }
+#container{
+  background-color: white;
+  transition: background-color 0.8s;
+}
+
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .banner-UDe .auto-group-5ths-ECp {
   margin: 0rem 15.8rem 17.562rem 3rem;
   width: calc(100% - 18.8002rem);
@@ -70,7 +84,7 @@ body {
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .banner-UDe .auto-group-5ths-ECp .auto-group-ca1n-j9a {
   box-sizing: border-box;
-  padding: 0.9rem 86.9rem 0.8rem 0rem;
+  padding: 5.9rem 60vw 0.8rem 0rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -113,11 +127,11 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.3;
-  letter-spacing: 0.06rem;
   color: #000000;
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
   flex-shrink: 0;
+
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .banner-UDe .auto-group-5ths-ECp .demorequestbtn-sh2 {
   width: 12.4rem;
@@ -135,9 +149,10 @@ body {
   background-color: #d25c5c;
   border-radius: 3rem;
   flex-shrink: 0;
+  margin-top: 4rem;
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .banner-UDe .item-0-1-9uS {
-  width: 155.3rem;
+  width: 100vw;
   height: 0.3312rem;
   object-fit: contain;
   vertical-align: top;
@@ -146,6 +161,7 @@ body {
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g {
   box-sizing: border-box;
   padding-top: 0.0066rem;
+  padding-left: 14rem;
   width: 100%;
   align-items: center;
   display: flex;
@@ -155,9 +171,10 @@ body {
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frstlndng-zfA {
   margin-right: 0rem;
   box-sizing: border-box;
-  padding: 36.4rem 0rem 48.2rem 11.2rem;
-  width: calc(100% - 0rem);
-  height: 133.9rem;
+  margin-top: 20vh;
+  padding: 2rem 0rem 0rem 11.2rem;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
   position: relative;
   background-color: #ffffff;
@@ -167,11 +184,22 @@ body {
   width: 172.3rem;
   height: 100%;
 }
+.ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frstlndng-zfA .fisrtlandingsite-v32 .just-line {
+  height: 50vh;
+  width: 70%;
+  margin-left:10vw;
+  position: absolute;
+  border-bottom: solid 0.1rem #000000;
+  border-top: solid 0.1rem #000000;
+}
+
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frstlndng-zfA .fisrtlandingsite-v32 .auto-group-9b7w-rxG {
-  margin-bottom: 0.4rem;
+  margin-bottom: 3vh;
+  margin-left: 10vw;
   width: 100%;
-  height: 42.3rem;
+  height: 50vh;
   position: relative;
+
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frstlndng-zfA .fisrtlandingsite-v32 .auto-group-9b7w-rxG .real-recognize-real-D28 {
   width: 172.3rem;
@@ -192,7 +220,7 @@ body {
   height: 29.7rem;
   position: absolute;
   left: 3.5rem;
-  top: 0;
+  top: 10vh;
   font-size: 9.9rem;
   font-weight: 600;
   line-height: 1;
@@ -201,7 +229,7 @@ body {
   font-family: Roboto, 'Source Sans Pro';
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frstlndng-zfA .fisrtlandingsite-v32 .r-we-make-the-next-generation-of-artificial-intelligence-that-can-detect-fake-profile-pictures-1Ct {
-  margin-left: 3.5rem;
+  margin-left: 22vh;
   max-width: 62rem;
   font-size: 2.2rem;
   font-weight: 400;
@@ -214,6 +242,7 @@ body {
   margin: 0rem 0rem 0.2rem 0rem;
   box-sizing: border-box;
   padding-bottom: 21.8rem;
+  border-top: solid 0.2rem #000000;
   width: calc(100% - 0rem);
   overflow: hidden;
   position: relative;
@@ -234,15 +263,15 @@ body {
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-2-G8p .auto-group-gxks-Xix {
   width: 153.3rem;
   height: 109.1rem;
-  position: relative;
+  /*position: relative;*/
   flex-shrink: 0;
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-2-G8p .auto-group-gxks-Xix .use-3r-better-user-experience-faG {
   width: 33.3rem;
   height: 9.2rem;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 0.5vw;
+  top: 5vh;
   font-size: 4.6rem;
   font-weight: 500;
   line-height: 1;
@@ -250,17 +279,17 @@ body {
   font-family: Roboto, 'Source Sans Pro';
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-2-G8p .auto-group-gxks-Xix .img-ahE {
-  width: 138rem;
+  width: 77vw;
   height: 109.1rem;
   position: absolute;
-  left: 15.3rem;
+  left: 20vw;
   top: 0;
   align-items: center;
   display: flex;
   flex-direction: column;
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-2-G8p .auto-group-gxks-Xix .img-ahE .r-detects-eliminate-fake-ai-generated-profilesmake-clean-service-with-us-Wat {
-  margin: 0rem 0rem 20.7rem 20.2rem;
+  margin: 2vw 0rem 20.7rem 20.2rem;
   max-width: 57.2rem;
   font-size: 2.4rem;
   font-weight: 400;
@@ -298,7 +327,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-.ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-3-EvC .auto-group-kgsc-AJ4 .designed-for-your-application-hHz {
+.designed-for-your-application-hHz {
   margin-bottom: 9.4rem;
   max-width: 37.8rem;
   font-size: 4.6rem;
@@ -308,14 +337,61 @@ body {
   color: #000000;
   font-family: Roboto, 'Source Sans Pro';
   flex-shrink: 0;
+  left: 0.5vw;
+  top: 5vh;
 }
-.ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-3-EvC .auto-group-kgsc-AJ4 .imgslidesection-1pU {
-  margin-left: 48.8rem;
-  width: 104.5rem;
-  height: 101.1rem;
-  background-color: #d9d9d9;
-  flex-shrink: 0;
+.imgslidesection-1pU {
+  margin-left: 20vw;
+  width: 100vw;
+  height: 80vh;
+  /*background-color: #d9d9d9;*/
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
+.list {
+  padding: 1rem 0;
+  width: 100%;
+  display: flex;
+  transform: translate(0, 0);
+}
+
+.item {
+  padding-right: 5rem;
+  list-style: none;
+  user-select: none;
+}
+
+.item:first-child {
+  padding-left: 1rem;
+}
+
+.link {
+  display: block;
+  -webkit-user-drag: none;
+}
+
+.image {
+  cursor: url(../assets/mouse-cursor.png) 2 2, auto;
+  display: block;
+  width: 40vw;
+  height: 60vh;
+  -webkit-user-drag: none;
+}
+#img_title{
+  padding-top: 1rem;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+}
+#img_txt{
+  padding-top: 1rem;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-4-uQ4 {
   margin-right: 0rem;
   box-sizing: border-box;
@@ -349,6 +425,7 @@ body {
   height: 7.7rem;
   position: relative;
   flex-shrink: 0;
+
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-4-uQ4 .auto-group-nyzz-am6 .tilte-7m2 .reasons-for-3r-rTi {
   width: 32.3rem;
@@ -368,7 +445,7 @@ body {
   width: 10.6rem;
   height: 3.2rem;
   position: absolute;
-  left: 0;
+  left: 0.45rem;
   top: 0;
   text-align: center;
   font-size: 2.4rem;
@@ -454,7 +531,7 @@ body {
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-7-USU .group-4-Bbn .image-5-uGt {
   margin-right: 31rem;
-  width: 54rem;
+  width: 40vw;
   height: 57.9259rem;
   object-fit: cover;
   vertical-align: top;
@@ -463,7 +540,7 @@ body {
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-7-USU .group-4-Bbn .r-is-modularized-so-easy-to-mount-on-your-service-dCt {
   margin-top: 2.345rem;
-  max-width: 64.3rem;
+  max-width: 60vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -486,7 +563,7 @@ body {
   font-family: Poppins, 'Source Sans Pro';
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-7-USU .group-5-upc {
-  margin: 0rem 0.043rem 27.977rem 3rem;
+  margin: 40vh 0.043rem 27.977rem 3rem;
   width: calc(100% - 3.0434rem);
   display: flex;
   align-items: center;
@@ -512,12 +589,11 @@ body {
   font-size: 3.6rem;
   font-weight: 400;
   line-height: 1.2999999788;
-  letter-spacing: 0.144rem;
+  letter-spacing: 0.1rem;
   color: rgba(0, 0, 0, 0.6999999881);
   font-family: Poppins, 'Source Sans Pro';
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-7-USU .group-5-upc .image-6-RK6 {
-  width: 91.2566rem;
   height: 57.388rem;
   object-fit: cover;
   vertical-align: top;
@@ -525,6 +601,7 @@ body {
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-7-USU .group-6-MCk {
   margin-right: 14.7rem;
+  margin-top: 30vh;
   box-sizing: border-box;
   padding-right: 2.8rem;
   width: calc(100% - 14.7rem);
@@ -534,7 +611,7 @@ body {
   flex-shrink: 0;
 }
 .ladingpage-sJQ .auto-group-1c7z-7Te .auto-group-eyha-XJQ .auto-group-deyn-g8g .frame-7-USU .group-6-MCk .image-7-sgt {
-  margin-right: 29.1rem;
+  margin-right: 50rem;
   width: 52.2rem;
   height: 54.5506rem;
   object-fit: cover;
@@ -561,20 +638,23 @@ body {
   font-size: 3.6rem;
   font-weight: 400;
   line-height: 1.2999999788;
-  letter-spacing: 0.144rem;
+  letter-spacing: 0.1rem;
   color: rgba(0, 0, 0, 0.6999999881);
   font-family: Poppins, 'Source Sans Pro';
 }
 .ladingpage-sJQ .frame-8-WNU {
   box-sizing: border-box;
   padding: 54.4rem 0rem 23.4rem 86.4rem;
+  margin-bottom: 20vh;
   width: 100%;
   height: 133.2rem;
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-color: black;
+  /*background-repeat: no-repeat;*/
   background-position: center;
-  background-image: url('../assets/image-9-bg.png');
+  /*background-image: url('../assets/image-9-bg.png');*/
   flex-shrink: 0;
+  z-index: 3;
 }
 .ladingpage-sJQ .frame-8-WNU .contact-ptx {
   width: 100%;
@@ -583,31 +663,32 @@ body {
   flex-direction: column;
 }
 .ladingpage-sJQ .frame-8-WNU .contact-ptx .contactus-BjW {
+  margin-left: 20vw;
   margin-bottom: 0.8rem;
   box-sizing: border-box;
   padding: 2.9rem 0.372rem;
   width: 100%;
   height: 38.3rem;
-  font-size: 8rem;
-  font-weight: 600;
+  font-size: 6rem;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.5rem;
   text-transform: capitalize;
-  color: #000000;
-  font-family: Poppins, 'Source Sans Pro';
+  font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
-  border-top: solid 0.1rem #000000;
-  border-bottom: solid 0.1rem #000000;
+  color: #ffffff;
+  border-top: solid 0.1rem #ffffff;
+  border-bottom: solid 0.1rem #ffffff;
   flex-shrink: 0;
 }
 .ladingpage-sJQ .frame-8-WNU .contact-ptx .check-our-latest-model-and-test-how-it-work-with-a-free-democontact-us-for-more-qJG {
-  margin: 0rem 0rem 3.9rem 0.2rem;
+  margin: 2rem 0rem 3.9rem 20vw;;
   max-width: 33.4rem;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 200;
   line-height: 1.3;
   letter-spacing: 0.08rem;
-  color: #000000;
+  color: #ffffff;
   font-family: Roboto, 'Source Sans Pro';
   flex-shrink: 0;
 }
@@ -620,18 +701,20 @@ body {
 }
 .ladingpage-sJQ .frame-8-WNU .contact-ptx .btn-5TW .join-us-1c4 {
   margin-right: 1.2rem;
+  margin-left: 20vw;
   font-size: 2rem;
   font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
-  color: #000000;
+  color: #ffffff;
   font-family: Poppins, 'Source Sans Pro';
   white-space: nowrap;
   flex-shrink: 0;
+  border-bottom: solid 0.1rem #ffffff;
 }
 .ladingpage-sJQ .frame-8-WNU .contact-ptx .btn-5TW .arrow-1-jY4 {
   margin-top: 0.0016rem;
-  width: 1rem;
+  width: 3rem;
   height: 0;
   object-fit: contain;
   vertical-align: top;

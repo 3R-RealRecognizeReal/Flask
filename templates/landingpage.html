@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Ladingpage</title>
+  <title>Landingpage</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost%3A400"/>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/landingpage.css') }}"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/landingpage.css') }}">
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </head>
 <body>
 <div class="ladingpage-sJQ">
   <div class="auto-group-1c7z-7Te">
     <div class="auto-group-cdyz-AKS">
-      <a href="{{url_for('index')}}" style="text-decoration:none;color:black;"><p>3R</p></a>
+      <a href="{{url_for('index')}}">
+        <img class="Logo" src="../static/assets/webLogo.PNG" style="width: 70%; max-width: 70px; vertical-align: middle" data-aos="fade-right" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic"/>
+      </a>
     </div>
     <div class="auto-group-eyha-XJQ">
-      <div class="banner-UDe">
+      <div class="banner-UDe" id="container">
         <div class="auto-group-5ths-ECp">
           <div class="auto-group-ca1n-j9a">
             <p class="service-QQ8">Service</p>
@@ -37,31 +41,34 @@
             <a href="{{url_for('demo')}}" style="text-decoration:none;color:black;">Request Demo</a> 
           </div>
         </div>
-        <img class="item-0-1-9uS" src="./assets/.png"/>
       </div>
+      <script src="./index.js"></script>
+      <!--frame group-->
       <div class="auto-group-deyn-g8g">
         <div class="frstlndng-zfA">
           <div class="fisrtlandingsite-v32">
+            <div class="just-line" data-aos="fade-up" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic"></div>
             <div class="auto-group-9b7w-rxG">
-              <p class="real-recognize-real-D28">
+              <p class="real-recognize-real-D28" data-aos="fade-up" data-aos-once="false" data-aos-duration="1700" data-aos-easing = "Ease in-out Cubic">
               Real Recognize Real
               <br/>
-              
+
               </p>
-              <p class="real-recognize-real-ttx">
+              <p class="real-recognize-real-ttx" data-aos="fade-up" data-aos-once="false" data-aos-duration="2000" data-aos-easing = "Ease in-out Cubic">
               Real Recognize Real
               <br/>
-              
+
               </p>
             </div>
             <p class="r-we-make-the-next-generation-of-artificial-intelligence-that-can-detect-fake-profile-pictures-1Ct">3R ::: We make the next generation of Artificial Intelligence that can detect fake profile pictures.</p>
           </div>
         </div>
-        <div class="frame-2-G8p">
+        <div class="frame-2-G8p" data-aos="fade-right" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic">
+          <!--        1-2 line -->
           <img class="item-1-2-b4c" src="REPLACE_IMAGE:318:2633"/>
           <div class="auto-group-gxks-Xix">
             <p class="use-3r-better-user-experience-faG">
-            Use 3R, better 
+            Use 3R, </br>better
             <br/>
             user Experience
             </p>
@@ -71,21 +78,52 @@
               <br/>
               Make clean service with us!
               <br/>
-              
+
               </p>
               <div class="image-8-Xkt">
               </div>
             </div>
           </div>
         </div>
-        <div class="frame-3-EvC">
+        <div class="frame-3-EvC" data-aos="fade-right" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic">
           <div class="auto-group-kgsc-AJ4">
             <p class="designed-for-your-application-hHz">designed for Your application</p>
+<!--            <div class="imgslidesection-1pU">-->
+<!--              <img src="../static/assets/tinder.png" alt="pic"/>-->
+<!--              <img src="../static/assets/facebook.jpg" alt="pic"/>-->
+<!--              <img src="../static/assets/linkedin.jpg" alt="pic"/>-->
+<!--            </div>-->
+<!--            -->
             <div class="imgslidesection-1pU">
+              <ul class="list">
+                <li class="item">
+                  <a class="link">
+                    <img class="image" src="../static/assets/Dating.jpg" alt="첫 번째" />
+                    <p id="img_title">Dating services</br></p>
+                    <p id="img_txt">Date matching services constantly suffer from fraud and malicious users. </br>
+                      With 3R, better user experience is guaranteed with certified users. </p>
+                  </a>
+                </li>
+                <li class="item">
+                  <a class="link">
+                    <img class="image" src="../static/assets/facebook.jpg" alt="두 번째" />
+                    <p id="img_title">SNS platforms</br></p>
+                    <p id="img_txt">Fake news, propaganda, hurting comments and pictures are wide-spread by fake accounts.</br> Guard your service with 3R</p>
+                  </a>
+                </li>
+                <li class="item">
+                  <a class="link">
+                    <img class="image" src="../static/assets/linkedin.jpg" alt="세 번째" />
+                    <p id="img_title">Save time and money</br></p>
+                    <p id="img_txt">Blocking fake profiles in job hunting services will help companies from wasting time and money</p>
+                  </a>
+                </li>
+              </ul>
             </div>
+            <script src="./app.js"></script>
           </div>
         </div>
-        <div class="frame-4-uQ4">
+        <div class="frame-4-uQ4" data-aos="fade-right" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic">
           <div class="item-3-4-ESL">
           </div>
           <div class="auto-group-nyzz-am6">
@@ -95,22 +133,20 @@
             </div>
             <p class="easy-to-use-reasonable-price-and-more-3r-is-much-more-than-a-certification-engine-TTW">
               <span class="easy-to-use-reasonable-price-and-more-3r-is-much-more-than-a-certification-engine-TTW-sub-0">
-              Easy to use,
+              Easy to mount,
               <br/>
-              Reasonable price,
+              Versatile
               <br/>
-              and more!
+              Evolving 3R
               <br/>
               
               </span>
               <span class="easy-to-use-reasonable-price-and-more-3r-is-much-more-than-a-certification-engine-TTW-sub-1">
-              
+
               <br/>
-              
-              <br/>
-              
               </span>
-              <span class="easy-to-use-reasonable-price-and-more-3r-is-much-more-than-a-certification-engine-TTW-sub-2">3R is much more than a certification engine.</span>
+              <span class="easy-to-use-reasonable-price-and-more-3r-is-much-more-than-a-certification-engine-TTW-sub-2">
+                3R is much more than a certification engine.</span>
               <span class="easy-to-use-reasonable-price-and-more-3r-is-much-more-than-a-certification-engine-TTW-sub-3">
               
               <br/>
@@ -127,37 +163,32 @@
           </div>
         </div>
         <div class="frame-7-USU">
-          <div class="group-4-Bbn">
-            <img class="image-5-uGt" src="./assets/image-5.png"/>
+          <div class="group-4-Bbn" data-aos="fade-left" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic">
+            <img class="image-5-uGt" src="../static/assets/modularization.png"/>
             <div class="r-is-modularized-so-easy-to-mount-on-your-service-dCt">
               <span class="r-is-modularized-so-easy-to-mount-on-your-service-dCt-sub-0">
               3R is [Modularized]
-              <br/>
-              
+              <br/><span class="r-is-modularized-so-easy-to-mount-on-your-service-dCt-sub-1">So easy to mount on your service</span>
+
               </span>
-              <span class="r-is-modularized-so-easy-to-mount-on-your-service-dCt-sub-1">So easy to mount on your service</span>
             </div>
           </div>
-          <div class="group-5-upc">
+          <div class="group-5-upc" data-aos="fade-right" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic">
             <div class="detects-more-than-a-face-such-as-emojis-and-more-EM6">
               <span class="detects-more-than-a-face-such-as-emojis-and-more-EM6-sub-0">
               Detects more than a face 
-              <br/>
-              
+              <br/><span class="detects-more-than-a-face-such-as-emojis-and-more-EM6-sub-1">Such as emojis or Scenery</span>
               </span>
-              <span class="detects-more-than-a-face-such-as-emojis-and-more-EM6-sub-1">Such as emojis and more!</span>
             </div>
-            <img class="image-6-RK6" src="./assets/image-6.png"/>
+            <img class="image-6-RK6" src="../static/assets/image-6.png"/>
           </div>
-          <div class="group-6-MCk">
-            <img class="image-7-sgt" src="./assets/image-7.png"/>
+          <div class="group-6-MCk" data-aos="fade-left" data-aos-once="false" data-aos-duration="1200" data-aos-easing = "Ease in-out Cubic">
+            <img class="image-7-sgt" src="../static/assets/image-7.png"/>
             <div class="customize-it-to-your-service-3r-offer-model-customization-zmW">
               <span class="customize-it-to-your-service-3r-offer-model-customization-zmW-sub-0">
               Customize it to your service
-              <br/>
-              
+              <br/><span class="customize-it-to-your-service-3r-offer-model-customization-zmW-sub-1">3R offer model customization</span>
               </span>
-              <span class="customize-it-to-your-service-3r-offer-model-customization-zmW-sub-1">3R offer model customization</span>
             </div>
           </div>
         </div>
@@ -165,20 +196,26 @@
     </div>
   </div>
   <div class="frame-8-WNU">
-    <div class="contact-ptx">
+    <div class="contact-ptx"data-aos="fade-in" data-aos-once="false" data-aos-duration="1600" data-aos-easing = "Ease in-out Cubic">
       <div class="contactus-BjW">Contact us</div>
       <p class="check-our-latest-model-and-test-how-it-work-with-a-free-democontact-us-for-more-qJG">
       Check our latest model and
       <br/>
       Test how it work with a free demo!
       <br/>
-      
+
       <br/>
       Contact us for more
       </p>
       <div class="btn-5TW">
-        <p class="join-us-1c4">Join Us</p>
-        <img class="arrow-1-jY4" src="REPLACE_IMAGE:343:10"/>
+        </br>
+        </br>
+        </br>
+        </br>
+        <a href="{{url_for('login')}}" style="text-decoration:none;color:black;">
+        <p class="join-us-1c4">Join Us &nbsp ➜</p>
+        <img class="arrow-1-jY4" src="../static/assets/arrow2.png"/>
+        </a>
       </div>
     </div>
   </div>
@@ -245,9 +282,13 @@
           </div>
         </div>
       </div>
-      <img class="line-Dax" src="./assets/line.png"/>
+      <img class="line-Dax" src="../static/assets/line.png"/>
     </div>
-    <img class="my-project-1-1-ZPv" src="./assets/my-project-1-1.png"/>
+    <img class="my-project-1-1-ZPv" src="../static/assets/my-project-1-1.png"/>
   </div>
 </div>
+<script>
+  AOS.init();
+</script>
 </body>
+</html>
