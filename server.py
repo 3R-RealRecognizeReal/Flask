@@ -24,7 +24,17 @@ def index():
         user = session["uid"]
     else:
         user = "Login"   
-    return render_template("base.html", user = user)
+    return render_template("landingpage.html", user=user)
+
+
+@app.route('/demo')
+def demo():
+    if "uid" in session:
+        user = session["uid"]
+        return render_template("base.html", user=user)
+    else:
+        user = "Login"
+        return render_template("landingpage.html", user=user)
 
 
 @app.route('/upload')
