@@ -67,20 +67,16 @@ def upload_done():
     end_time = time.time()
     app.logger.info(end_time-start_time)
     
-    print(M.labels)
-    print(M.label)
-    print(M.prob)
-    
     if M.labels != None:
         flash("label 여러개")
-        return render_template('upload.html', filename=None, labels=M.labels, label=None, probability=None)
+        return render_template('upload.html', filename=path_local, labels=M.labels, label=None, probability=None)
         
     elif DB.upload(uid, name, path_local, M.labels, M.label, M.prob):
         return render_template('upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
     
     else:
         flash("이미 있는 파일 혹은 10개 이상")
-        return render_template('upload.html', filename=None, labels=None, label=None, probability=None)
+        return render_template('upload.html', filename=path_local, labels=None, label=None, probability=None)
         
 
 

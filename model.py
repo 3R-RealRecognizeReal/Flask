@@ -110,6 +110,9 @@ class Model():
         if len(self.labels) == 1 and self.labels.get("person") == 1:
             self.label, self.prob = self.test_model_RF()
             self.labels = None
+        else:
+            self.label = None
+            self.prob = None
             
     
     def test_model_Obj(self, dir_path):
@@ -154,7 +157,7 @@ class Model():
                         (255, 255, 255), 2)
             
                     labels.append(category)
-    
+                    
             labels = collections.Counter(labels)
             
             return labels
