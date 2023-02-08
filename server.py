@@ -34,7 +34,8 @@ def demo():
         return render_template("base.html", user=user)
     else:
         user = "Login"
-        return render_template("landingpage.html", user=user)
+        # return render_template("landingpage.html", user=user)
+        return redirect(url_for("login"))
 
 
 @app.route('/upload')
@@ -123,7 +124,7 @@ def logout():
 def login(): 
     if "uid" in session:
         return redirect(url_for("index"))
-    return render_template("login/index.html")
+    return render_template("login.html")
 
 
 @app.route("/login_done", methods = {"GET"}) 
