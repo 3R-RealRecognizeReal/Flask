@@ -1,11 +1,9 @@
-<!--로그인, 회원가입, 글작성, 글목록 버튼만 추가-->
 {% extends "base.html" %}
    
 {% block user %}
 
 {% if user=="Login" %}
-<a href="{{url_for('signin')}}">Signin</a>
-<a href="{{url_for('login')}}">Login</a>
+<a href="{{url_for('login')}}">Sign Up / Login</a>
 {% else %}
 <p>user: {{user}}</p>
 <a href="{{url_for('logout')}}">Logout</a>
