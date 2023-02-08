@@ -12,9 +12,14 @@
 		{% endblock message %}
 		<header>
 			<a href="{{url_for('index')}}"><p>HOME</p></a>
-			{% block user %}
-
-			{% endblock user %}
+			{% if user=="Login" %}
+			<a href="{{url_for('login')}}">Sign Up / Login</a>
+			{% else %}
+			<p>user: {{user}}</p>
+			<a href="{{url_for('logout')}}">Logout</a>
+			<a href="{{url_for('upload')}}">글 작성하기</a>
+			<a href="{{url_for('upload_list')}}">글 목록 보기</a>
+			{% endif %}
 		</header>
 		{% block contents %}
 
