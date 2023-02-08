@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost%3A400"/>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/landingpage.css') }}"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/landingpage.css') }}"/>
 </head>
 <body>
 <div class="ladingpage-sJQ">
   <div class="auto-group-1c7z-7Te">
     <div class="auto-group-cdyz-AKS">
-      <a href="{{url_for('index')}}"><p>3R</p></a>
+      <a href="{{url_for('index')}}" style="text-decoration:none;color:black;"><p>3R</p></a>
     </div>
     <div class="auto-group-eyha-XJQ">
       <div class="banner-UDe">
@@ -27,14 +27,14 @@
             <p class="contact-pTr">Contact</p>
             <p class="login-LSC">
               {% if user=="Login" %}
-              <a href="{{url_for('login')}}">Sign up / Login</a>
+              <a href="{{url_for('login')}}" style="text-decoration:none;color:black;">Sign up / Login</a>
               {% else %}
-              <a href="{{url_for('logout')}}">Logout</a>
+              <a href="{{url_for('logout')}}" style="text-decoration:none;color:black;">Logout</a>
               {% endif %}
             </p>
           </div>
           <div class="demorequestbtn-sh2">
-            <a href="{{url_for('demo')}}">Request Demo</a> 
+            <a href="{{url_for('demo')}}" style="text-decoration:none;color:black;">Request Demo</a> 
           </div>
         </div>
         <img class="item-0-1-9uS" src="./assets/.png"/>
