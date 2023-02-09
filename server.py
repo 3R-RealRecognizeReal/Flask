@@ -46,8 +46,8 @@ def upload_done():
     name = file.filename
     filename = uid + "_" + file.filename
     
-    file = Image.open(file)
-    file.thumbnail((400, 400))
+    # file = Image.open(file)
+    # file.thumbnail((400, 400))
     
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # 로컬 저장
     
