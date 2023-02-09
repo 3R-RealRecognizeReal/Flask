@@ -133,7 +133,6 @@ def login_done():
 
     if DB.login(uid, pwd): 
         session["uid"] = uid
-        flash("SUCCESS")
         return redirect(url_for("index"))
     else:
         flash("INVALID")

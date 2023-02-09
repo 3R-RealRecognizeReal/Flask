@@ -114,6 +114,10 @@ class Model():
             self.label = None
             self.prob = None
             
+        print(self.labels)
+        print(self.label)
+        print(self.prob)
+            
     
     def test_model_Obj(self, dir_path):
         self.img_Obj, _, _, _ = self.transformer(self.img_Obj, None, torch.zeros(1,4), torch.zeros(1))
