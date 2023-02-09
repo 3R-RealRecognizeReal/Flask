@@ -90,9 +90,13 @@ class DBModule():
     
     def upload_detail(self, uid, pid):
         post = self.db.child("uploads").child(uid).get().val()[pid]
+        print("POST")
+        print(post)
         path_local = 'static/downloads/' + post['path_on_cloud'].split('/', maxsplit=1).pop().replace('/', '_')
+        label = post['label']
+        prob = post['probability']
         self.storage.child(post['path_on_cloud']).download("", path_local)
-        return post, path_local
+        return "../"+path_local, label, prob
     
     
     def get_user(self, uid):

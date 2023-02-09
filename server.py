@@ -30,19 +30,10 @@ def index():
 @app.route('/demo')
 def demo():
     if "uid" in session:
-        user = session["uid"]
-        return render_template("base.html", user=user)
+        user, items, length = upload_list()
+        return render_template("demo.html", user=user, upload_list=items, length=length)
     else:
         user = "Login"
-        # return render_template("landingpage.html", user=user)
-        return redirect(url_for("login"))
-
-
-@app.route('/upload')
-def upload():
-    if "uid" in session:
-        return render_template("upload.html")
-    else:
         return redirect(url_for("login"))
 
 
@@ -69,22 +60,26 @@ def upload_done():
     
     if M.labels != None:
         flash("label 여러개")
-        return render_template('upload.html', filename=path_local, labels=M.labels, label=None, probability=None)
+        user, items, length = upload_list()
+        return render_template('demo.html', user=user, upload_list=items, length=length, filename=path_local, labels=M.labels, label=None, probability=None)
         
     elif DB.upload(uid, name, path_local, M.labels, M.label, M.prob):
-        return render_template('upload.html', filename=path_local, labels=None, label=M.label, probability=M.prob)
+        user, items, length = upload_list()
+        return render_template('demo.html', user=user, upload_list=items, length=length, filename=path_local, labels=None, label=M.label, probability=M.prob)
     
     else:
+        user, items, length = upload_list()
         flash("이미 있는 파일 혹은 10개 이상")
-        return render_template('upload.html', filename=path_local, labels=None, label=None, probability=None)
-        
+        return render_template('demo.html', user=user, upload_list=items, length=length, filename=path_local, labels=None, label=None, probability=None)        
 
 
-@app.route("/upload_list")
+@app.route("/upload_list", methods = {"GET"})
 def upload_list():
     if "uid" in session:
-        uid = session.get("uid")
-        upload_list = DB.upload_list(uid)
+        user = session.get("uid")
+        ckb = request.args.get("menuicon")
+        print(ckb)
+        upload_list = DB.upload_list(user)
         
         if upload_list == None:
             length = 0
@@ -92,7 +87,7 @@ def upload_list():
         else:
             length = len(upload_list)
             items = upload_list.items()
-        return render_template("upload_list.html", upload_list=items, length=length)
+        return user, items, length
     else:
         return redirect(url_for("login"))
 
@@ -101,8 +96,9 @@ def upload_list():
 def post(fid):
     if "uid" in session:
         uid = session.get("uid")
-        post, path_local = DB.upload_detail(uid, fid)
-        return render_template("upload_detail.html", post=post, filename=path_local)
+        path_local, label, prob = DB.upload_detail(uid, fid)
+        user, items, length = upload_list()
+        return render_template("demo.html", user=user, upload_list=items, length=length, filename=path_local, label=label, probability=prob)
     else:
         return redirect(url_for("login"))
 
