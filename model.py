@@ -63,17 +63,7 @@ class Model():
         self.transformer = SSDTransformer(self.dboxes, (300, 300), val=True) # 데이터에 적용할 transform 
 
 
-    # pretrained vgg19 모델에 avgpool과 classifier를 추가하여 새로운 model 생성
     def build_resnet_based_model(self, device_name='cuda'): 
-        # device = torch.device(device_name)
-        # self.model_RF = models.vgg19(pretrained=True)
-        # self.model_RF.avgpool = nn.AdaptiveAvgPool2d(output_size=(1,1))
-        # self.model_RF.classifier = nn.Sequential(
-        #     nn.Flatten(),
-        #     nn.Linear(512, 256),
-        #     nn.ReLU(),
-        #     nn.Linear(256, len(self.class_list)),
-        #     nn.Softmax(dim=1)
         device = torch.device(device_name)
         self.model_RF = models.resnet50(pretrained=True)
         self.model_RF.avgpool = nn.AdaptiveAvgPool2d(output_size=(1,1))
