@@ -78,7 +78,6 @@ def upload_list():
     if "uid" in session:
         user = session.get("uid")
         ckb = request.args.get("menuicon")
-        print(ckb)
         upload_list = DB.upload_list(user)
         
         if upload_list == None:
