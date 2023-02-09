@@ -19,9 +19,11 @@
     <span></span>
   </label>
   <div class="sidebar">
+    <a href="{{url_for('demo')}}" style="text-decoration:none;color:white;">
     <div class="profile-URv">
       <div class="ellipse-1-Nfi"></div>
       <div class="name-goes-here-s6g">{{user}}</div>
+    </a>
     </form>
     </div>
     <div class="hist_list">
@@ -31,13 +33,13 @@
           <p>작성된 포스트가 없습니다.</p>
         {% else %}
           {% for post in upload_list %}
-          <a href="{{url_for('post', fid=post[0])}}">
+          <a href="{{url_for('post', fid=post[0])}}" style="text-decoration:none;color:white;">
             <div>
               <p>file name: {{post[1].path_on_cloud}}</p>
             </div>
           </a>
           {% endfor %}
-          {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
