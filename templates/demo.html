@@ -52,7 +52,12 @@
           <div class="group-1-8Tr">
             <div class="rectangle-1-cnL">
             </div>
-            <div class="select-photo-vY8"><input type="file" name="file"></div>
+            <div class="select-photo-vY8">
+              <form>
+                <label for="file-input" style="font-size: 2rem;">Upload Image</label>
+                <input id="file-input" type="file" name="file"/>
+              </form>
+            </div>
           </div>
             <input type="submit" value="submit" class="runbtn-BU4">
         </div>
@@ -76,14 +81,15 @@
       <div class="group-5-fGk">
         <div class="pix-PTe">
           {% if filename %}
-          <img src="{{filename}}">
+          <img class="hi" src="{{filename}}" style="width: 100%;
+          height: 44vh;"/>
           {% endif %}
         </div>
         <div class="group-3-4Xr">
           <div class="auto-group-e1hs-Yxp">
             {% if filename %}
             {% if label %}
-                <p>{{label}} {{probability}}%</p>
+                <p style="font-size: 3rem;">{{label}} {{probability}}%</p>
             {% endif %}
             {% endif %}
           </div>

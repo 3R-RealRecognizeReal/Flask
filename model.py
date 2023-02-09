@@ -33,15 +33,6 @@ class Model():
         # face dataset에 맞게 모델 아키텍처 수정
         # output 사이즈를 지정하여 연산을 수행할 수 있음
         self.class_list = ['real', 'fake']
-        self.model_RF.avgpool = nn.AdaptiveAvgPool2d(output_size=(1,1))
-        self.model_RF.classifier = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(512, 256), # fully-connected
-            nn.ReLU(), # activation function
-            nn.Dropout(0.1), # 정규화
-            nn.Linear(256, len(self.class_list)), # real, fake 두 개 클래스
-            nn.Sigmoid() # 시그모이 함수로 확률 출력
-        )
 
         ckpt_RF = torch.load("./model/resnet50_model_34.pth", map_location=torch.device('cpu'))
 

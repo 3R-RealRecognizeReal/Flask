@@ -252,6 +252,17 @@ input[id="menuicon"]:checked + label + div {
   background-color: #78777d;
   border-radius: 1rem;
   flex-shrink: 0;
+
+}
+
+form input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: none;
+}
+form input::file-selector-button {
+  display: none;
 }
 /*----------------------------------*/
 .ErrorMain {
@@ -304,7 +315,7 @@ input[id="menuicon"]:checked + label + div {
 }
 
 .auto-group-e1hs-Yxp {
-  margin-top: 2vh;
+  margin-top: 1vh;
   width: 100%;
   height: 7.2rem;
   display: flex;
@@ -331,6 +342,16 @@ input[id="menuicon"]:checked + label + div {
 }
 .demo-page-Mig .linebox-NSk .mainbox-DiG .group-5-fGk .pix-PTe {
   width: 100%;
-  height: 38vh;
+  height: 44vh;
+  object-fit:cover;
+  align-items: center;
+  justify-content: center;
   background-color: #ffffff;
+}
+.hi{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit:cover;
 }
