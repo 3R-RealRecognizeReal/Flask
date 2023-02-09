@@ -28,7 +28,7 @@ torch.backends.cudnn.benchmark = False
 
 class Model():
     def __init__(self):
-        self.model_RF = models.vgg19(pretrained=True) # vgg19 pretrained 모델 사용
+        self.model_RF = models.resnet50(pretrained=True) # vgg19 pretrained 모델 사용
 
         # face dataset에 맞게 모델 아키텍처 수정
         # output 사이즈를 지정하여 연산을 수행할 수 있음
@@ -43,9 +43,9 @@ class Model():
             nn.Sigmoid() # 시그모이 함수로 확률 출력
         )
 
-        ckpt_RF = torch.load("./model/model_20.pth", map_location=torch.device('cpu'))
+        ckpt_RF = torch.load("./model/resnet50_model_34.pth", map_location=torch.device('cpu'))
 
-        self.model_RF = self.build_vgg19_based_model(device_name="cpu")
+        self.model_RF = self.build_resnet_based_model(device_name="cpu")
         self.model_RF.load_state_dict(ckpt_RF)
         self.model_RF.eval()
         
@@ -64,16 +64,26 @@ class Model():
 
 
     # pretrained vgg19 모델에 avgpool과 classifier를 추가하여 새로운 model 생성
-    def build_vgg19_based_model(self, device_name='cuda'): 
+    def build_resnet_based_model(self, device_name='cuda'): 
+        # device = torch.device(device_name)
+        # self.model_RF = models.vgg19(pretrained=True)
+        # self.model_RF.avgpool = nn.AdaptiveAvgPool2d(output_size=(1,1))
+        # self.model_RF.classifier = nn.Sequential(
+        #     nn.Flatten(),
+        #     nn.Linear(512, 256),
+        #     nn.ReLU(),
+        #     nn.Linear(256, len(self.class_list)),
+        #     nn.Softmax(dim=1)
         device = torch.device(device_name)
-        self.model_RF = models.vgg19(pretrained=True)
+        self.model_RF = models.resnet50(pretrained=True)
         self.model_RF.avgpool = nn.AdaptiveAvgPool2d(output_size=(1,1))
-        self.model_RF.classifier = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(512, 256),
+        fc_inputs = self.model_RF.fc.in_features
+        self.model_RF.fc = nn.Sequential(
+            nn.Linear(fc_inputs, 256),
             nn.ReLU(),
-            nn.Linear(256, len(self.class_list)),
-            nn.Softmax(dim=1)
+            nn.Dropout(0.4),
+            nn.Linear(256, len(self.class_list)), 
+            nn.Softmax(dim=1) # For using NLLLoss()
         )
         return self.model_RF.to(device)
 
